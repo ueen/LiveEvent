@@ -1,6 +1,8 @@
 # LiveEvent
 Live Event is a quick and easy solution to get a reliable and lifecycleaware EventBus.
 
+Every observer will only be called once and only active observer will receive the event.
+
 ## Get LiveEvent
 Add it in your root build.gradle at the end of repositories:
 ```
@@ -20,7 +22,7 @@ Step 2. Add the dependency
 
 ## Usage
 
-#### Sending
+### Sending
 e.g. in your Repository
 
 ```kotlin
@@ -36,7 +38,7 @@ leave ```post``` empty if you just want the event or put a value inside (has to 
 
 use ```event.post()``` LiveData handles the Threading
 
-#### Forwarding (optional)
+### Forwarding (optional)
 e.g. in your ViewModel
 
 ```kotlin
@@ -52,7 +54,7 @@ e.g. in your ViewModel
     })
 ```
 
-#### Recieving
+### Recieving
 e.g. in your Activity
 
 ```kotlin
