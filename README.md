@@ -26,7 +26,8 @@ e.g. in your Repository
 ```kotlin
     val event1 = LiveEvent<Any>()
     val event2 = LiveEvent<Int>()
-    fun event() {
+    
+    fun trigger() {
         event1.post()
         event2.post(7)
     }
