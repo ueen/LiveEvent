@@ -32,9 +32,9 @@ e.g. in your Repository
         event2.post(7)
     }
 ```
-use ```event.post()``` LiveData handles the Threading
-
 leave ```post``` empty if you just want the event or put a value inside (has to match the ```LiveEvent<identifier>```)
+
+use ```event.post()``` LiveData handles the Threading
 
 #### Forwarding (optional)
 e.g. in your ViewModel
