@@ -16,7 +16,7 @@ class LiveEvent<T>: MediatorLiveData<LiveEvent.Once<T>>() {
     }
 
     fun forward(source: LiveEvent<T>, observer: Observer<T>? = null): LiveEvent<T> {
-        this.addSource(source, Observer {
+        this.addSource(source, {
             if (observer != null && it.receive(observer.hashCode())) {
                 observer.onChanged(it.message)
             }
@@ -25,21 +25,14 @@ class LiveEvent<T>: MediatorLiveData<LiveEvent.Once<T>>() {
         return this
     }
 
-    fun observe(owner: LifecycleOwner, eventObserver: EventObserver<T>) {
+    fun observe(owner: LifecycleOwner, onEvent: (T) -> Unit) {
         this.value = null
         this.observe(owner, Observer {
-            if (it != null && it.receive(eventObserver.hashCode())) {
-                eventObserver.onEvent(it.message)
+            if (it != null && it.receive(onEvent.hashCode()) && it.message != null) {
+                onEvent(it.message)
             }
         })
     }
-
-    interface EventObserver<T> {
-        fun onEvent(value: T?) {
-
-        }
-    }
-
 
     class Once<T> (val message: T? = null) {
         private val received = mutableListOf<Int>()
