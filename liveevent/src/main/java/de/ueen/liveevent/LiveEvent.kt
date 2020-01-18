@@ -28,8 +28,8 @@ class LiveEvent<T>: MediatorLiveData<LiveEvent.Once<T>>() {
     fun observe(owner: LifecycleOwner, onEvent: (T) -> Unit) {
         this.value = null
         this.observe(owner, Observer {
-            if (it != null && it.receive(onEvent.hashCode()) && it.message != null) {
-                onEvent(it.message)
+            if (it != null && it.receive(onEvent.hashCode())) {
+                onEvent(it.message?:0)
             }
         })
     }
