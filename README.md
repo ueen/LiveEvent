@@ -26,12 +26,10 @@ Step 2. Add the dependency
 e.g. in your Repository
 
 ```kotlin
-    val event1 = LiveEvent<Any>()
     val event2 = LiveEvent<Int>()
     
     fun trigger() {
-        event1.post()
-        event2.post(7)
+        event.post(7)
     }
 ```
 leave ```post``` empty if you just want the event or put a value inside (has to match the ```LiveEvent<identifier>```)
@@ -42,14 +40,13 @@ use ```event.post()``` LiveData handles the Threading
 e.g. in your ViewModel
 
 ```kotlin
-    val event1beacon = LiveEvent<Any>().forward(repository.getEvent1)
-    val event2beacon = LiveEvent<Int>().forward(repository.getEvent2)
+    val eventBeacon = LiveEvent<Int>().forward(repository.getEvent)
 ```
 
 (optional) if you want to piggyback on the Event
 
 ```kotlin
-    val event2beacon = LiveEvent<Int>().forward(repository.getEvent2, Observer { it: Int ->
+    val eventBeacon = LiveEvent<Int>().forward(repository.getEvent, Observer { it: Int ->
         //do smth with it: Int
     })
 ```
@@ -58,10 +55,7 @@ e.g. in your ViewModel
 e.g. in your Activity
 
 ```kotlin
-        viewModel.getEvent1beacon.observe(this, onEvent = {it: Any ->
-
-        })
-        viewModel.getEvent2beacon.observe(this, onEvent = {it: Int ->
+        viewModel.getEventBeacon.observe(this, onEvent = {it: Int ->
 
         })
 ```
