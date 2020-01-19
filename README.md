@@ -26,7 +26,7 @@ Step 2. Add the dependency
 e.g. in your Repository
 
 ```kotlin
-    val event2 = LiveEvent<Int>()
+    val event = LiveEvent<Int>()
     
     fun trigger() {
         event.post(7)
