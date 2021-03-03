@@ -1,7 +1,7 @@
 # LiveEvent
 Live Event is a quick and easy solution to get a reliable and lifecycleaware EventBus.
 
-Every observer will only be called once and only active observer will receive the event.
+Every observer will only be called once and only active observers will receive the event.
 
 ## Get LiveEvent
 Add it in your root build.gradle at the end of repositories:
